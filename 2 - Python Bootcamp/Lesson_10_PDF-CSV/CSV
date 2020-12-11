@@ -1,0 +1,67 @@
+import os
+import csv
+
+print(os.getcwd())
+
+# When we open a new CSV file, and we import it as a python object, we can get some type of error, most of them are
+# encoding errors. The problem here it's that in the csv file there are some special characters
+# due to the written language. We can search in google for the encoding  error (UnicodeDecodeError)
+
+data = open(r"C:\Users\Alex Abades\Documents\Python\Udemy\Python\Complete-Python-3-Bootcamp-master\15-PDFs-and"
+            r"-Spreadsheets\example.csv", encoding='utf-8')
+
+csv_data = csv.reader(data)  # We can pass a delimiter
+
+data_lines = list(csv_data)
+
+print(data_lines)
+
+print('\n')
+print('The Column names are: ')
+print(data_lines[0])
+print('\n')
+print('The length of the list is: ', len(data_lines))
+print("We have to know that the first line it's from the column names")
+print('\n')
+
+for lines in data_lines[:5]:
+    print(lines)
+
+all_emails = []
+
+print('All my emails are:')
+for lines in data_lines:
+    all_emails.append(lines[3])
+
+print(all_emails)
+
+name = data_lines[1][1] + " " + data_lines[1][2]
+print(name)
+
+
+full_names = []
+print('\n')
+for lines in data_lines[1:]:
+    full_names.append(lines[1] + " " + lines[2])
+
+print(full_names)
+
+
+# HOW TO WRITE A CSV
+file_to_output = open("to_save_file.csv", mode="w", newline="")
+csv_writer = csv.writer(file_to_output, delimiter=",")  # Delimiter it's the column separator, it can be anything.
+
+csv_writer.writerow(["a", "b", "c"])
+csv_writer.writerows([["1", "2", "3"], ["4", "5", "6"]])  # Here as we already write, we have to be carefully to
+# match the rows
+file_to_output.close()
+
+
+# If we want to add some information, we can change the mode to append
+
+f = open("to_save_file.csv", mode="a", newline='')
+csv_writer = csv.writer(f)
+csv_writer.writerow(["1", "2", "3"])
+f.close()
+
+
