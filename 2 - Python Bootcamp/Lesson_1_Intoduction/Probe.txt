@@ -1,0 +1,6 @@
+Hello, this is a new line
+So this it's going to be a new line
+And we can write another line too
+We can try to write two new lines with
+this method, so we don't have to constantly
+write and writhe the object name and the method
